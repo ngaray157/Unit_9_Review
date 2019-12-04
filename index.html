@@ -19,6 +19,9 @@
    <title>Red Ball Pizza Customer Form</title>
    <link href="rb_base.css" rel="stylesheet" />
    <link href="rb_styles2.css" rel="stylesheet" />
+   <link href="rb_forms2.css" rel="stylesheet"/>
+   <link href="rb_validate.css" rel="stylesheet"/>
+   <script src="rb_formsubmit2.js"></script>
 </head>
 
 <body>
@@ -44,7 +47,38 @@
          values are marked by an asterisk (*). If you
          want to place your order over the phone, call us at
          <a href="tel:+13865557499">(386) 555-7499</a>.</p>
-         
+
+         <form action="http://wwww.example.com/redball/customer" method="post">
+               <div>
+                  <label for="nameBox">Name*</label>
+                  <input name="custName" id="nameBox" placeholder="First and Last Name" required />
+               </div>
+               <div>
+                  <label for="phoneBox">Phone*</label>
+                  <input name="custPhone" pattern="^\d{10}$|^(\(\d{3}\)\s*)?\d{3}[\s-]?\d{4}$"
+                      id="phoneBox" placeholder="(nnn) nnn-nnnn" required/>
+               </div>
+               <div>
+                  <input name="orderType" id="delivery" type="radio" checked/>
+                  <label for="delivery">Delivery</label>
+                  <input name="orderType" id="pickup" type="radio"/>
+                  <label for="pickup">Pickup</label>
+               </div>
+               <fieldset id="deliveryInfo">
+                  <legend>Delivery Options</legend>
+                  <textarea name="delAddress" id="addressBox" placeholder="Enter delivery address"></textarea>
+                  <label for="delBox">Delivery Time (leave blank for earliest delivery)</label>
+                  <input name="delTime" id="delBox" type="time"/>
+               </fieldset>
+               <fieldset id="pickupInfo">
+                  <legend>Pickup Options</legend>
+                  <label for="pickupBox">Pickup Time (leave blank for earliest pickup)</label>
+                  <input name="pickupTime" id="pickupBox" type="time" disabled/>
+               </fieldset>
+               <div>
+                  <input type="submit" value="Begin Building your Order"/>
+               </div>
+         </form>
          
    </section>
 
